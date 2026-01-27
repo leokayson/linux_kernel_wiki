@@ -1,0 +1,28 @@
+{
+  "recentFiles": [
+    {
+      "basename": "README",
+      "path": "README.md"
+    },
+    {
+      "basename": "Linux操作系统学习——启动",
+      "path": "文章/Linux操作系统学习——启动.md"
+    },
+    {
+      "basename": "Linux学习笔记",
+      "path": "Linux学习笔记.pdf"
+    },
+    {
+      "basename": "Linux内核知识体系",
+      "path": "Linux内核知识体系.png"
+    },
+    {
+      "basename": "源码组织结构",
+      "path": "源码组织结构.png"
+    }
+  ],
+  "omittedPaths": [],
+  "omittedTags": [],
+  "updateOn": "file-open",
+  "omitBookmarks": false
+}
