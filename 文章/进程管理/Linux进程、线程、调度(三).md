@@ -1,6 +1,6 @@
 本节主要介绍进程的调度器，设计的目标：吞吐和响应，轮流让其他进程获取CPU资源。
 
-### 进程调度机制的架构
+### 0.1.1	进程调度机制的架构
 操作系统通过中断机制，来周期性地触发调度算法进行进程的切换。
 
 * rq: 可运行队列，每个CPU对应一个，包含自旋锁，进程数量，用于公平调度的CFS结构体，当前正在运行的进程描述符。
@@ -18,7 +18,7 @@ schedule函数的流程包括：
 4、pick_next_task : 选取下一个将要执行的进程。<br>
 5、context_switch(rq, prev, next) 进行进程上下文切换。<br>
 
-### CPU/IO消耗型进程
+### 0.1.2	CPU/IO消耗型进程
 
 吞吐 vs. 响应
 
@@ -42,7 +42,7 @@ I/O消耗型 vs. CPU消耗型
 * tips: IO 消耗型对拿到CPU(延迟)比较敏感，应该被优先调度。一般需要CPU的响应速度快，即优先级要求比较高。
 * CPU bound： 多数时间花在CPU上面（做运算）；
 
-### 调度算法： 策略 + 优先级
+### 0.1.3	调度算法： 策略 + 优先级
 早期2.6调度器：优先级数组 和 Bitmaps
 
 * 0～ 139： 在内核空间， 把整个Linux优先级划分为0～139，数字越小，优先级越高。用户空间设置时，是反过来的。<br>
@@ -51,7 +51,7 @@ I/O消耗型 vs. CPU消耗型
 
 ![image](https://user-images.githubusercontent.com/87457873/127105805-547271f8-e1d5-4236-a7dc-4bb0d6ef51ca.png)
 
-#### SCHED_FIFO、SCHED_RR
+#### 0.1.3.1	SCHED_FIFO、SCHED_RR
 
 实时（RT）进程调度策略： 0～99采用的RT，100～139是非RT的。
 
@@ -62,7 +62,7 @@ I/O消耗型 vs. CPU消耗型
 
 当所有的SCHED_FIFO和SCHED_RR都运行至睡眠态，就开始运行 100～139之间的 普通task_struct。这些进程讲究 nice，
 
-#### SCHED_NORMAL
+#### 0.1.3.2	SCHED_NORMAL
 
 **非实时进程的调度和动态优先级：**
 
@@ -73,11 +73,11 @@ I/O消耗型 vs. CPU消耗型
 2、抢占。从睡眠状态到醒来，可以优先去抢占优先级低的进程。<br>
 **Linux根据睡眠情况，动态奖励和惩罚。** 越睡，优先级越高。想让CPU消耗型进程和IO消耗型进程竞争时，IO消耗型的进程可以竞争过CPU消耗型。
 
-#### rt的门限
+#### 0.1.3.3	rt的门限
 Linux内核在period的时间里RT最多只能跑runtime的时间。<br>
 在参数 /proc/sys/kernel/sched_rt_period_us 和 /proc/sys/kernel/sched_rt_runtime_us 中设置。单位：微秒。
 
-#### CFS 完全公平调度
+#### 0.1.3.4	CFS 完全公平调度
 后期，Linux对普通进程调度，提供了 完全公平调度算法，每次都会调vruntime最小的进程调度。
 
 红黑树，左边节点小于右边节点的值，运行到目前为止 （vruntime最小）的进程，同时考虑了CPU/IO和nice。
@@ -94,7 +94,7 @@ vruntime: virtual runtime，＝ pruntime/weight 权重* 系数。
 
 当进程里fork了多个线程，每个线程的 调度策略都可以不同，优先级可以不同。原因显然。
 
-#### 工具 chrt 和 renice
+#### 0.1.3.5	工具 chrt 和 renice
 
 ```c
 #include <unistd.h>
@@ -178,4 +178,6 @@ top发现其CPU利用率接近200%
 
 ```
 
+
+---
 
