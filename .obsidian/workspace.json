@@ -101,16 +101,6 @@
               "icon": "lucide-bookmark",
               "title": "书签"
             }
-          },
-          {
-            "id": "5a8843079c38dd01",
-            "type": "leaf",
-            "state": {
-              "type": "recent-files",
-              "state": {},
-              "icon": "clock",
-              "title": "Recent Files"
-            }
           }
         ]
       }
@@ -237,7 +227,7 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "9b2045c9d0586232",
+  "active": "0fc0aba898cfcec6",
   "lastOpenFiles": [
     "文章/进程管理/Kayson解惑.md",
     "文章/进程管理/Linux进程、线程、调度(四).md",

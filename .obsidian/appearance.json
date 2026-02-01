@@ -1,4 +1,9 @@
 {
-  "cssTheme": "Simply Colorful",
-  "theme": "moonstone"
+  "cssTheme": "Phycat",
+  "theme": "moonstone",
+  "baseFontSizeAction": true,
+  "baseFontSize": 16,
+  "interfaceFontFamily": "Noto Sans Mono CJK HK,Noto Sans",
+  "textFontFamily": "Noto Sans",
+  "monospaceFontFamily": "Noto Sans Mono CJK HK"
 }
