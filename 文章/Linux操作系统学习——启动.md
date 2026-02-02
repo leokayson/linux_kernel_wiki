@@ -56,9 +56,9 @@
 
   BIOS执行程序存储在ROM中，起始位置为0XFFFF0，当CS:IP指向该位置时，BIOS开始执行。BIOS主要包括以下内存映射：
 
-    0x00000000 - 0x000003FF - Real Mode Interrupt Vector Table
-    0x00000400 - 0x000004FF - BIOS Data Area
-    0x00000500 - 0x00007BFF - Unused
+    0x00000000 - 0x000003FF - Real Mode Interrupt Vector Table (1KB)
+    0x00000400 - 0x000004FF - BIOS Data Area (256 B)
+    0x00000500 - 0x00007BFF - Unused ()
     0x00007C00 - 0x00007DFF - Our Bootloader
     0x00007E00 - 0x0009FFFF - Unused
     0x000A0000 - 0x000BFFFF - Video RAM (VRAM) Memory
